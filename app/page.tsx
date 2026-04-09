@@ -1,65 +1,77 @@
-import Image from "next/image";
+import Link from 'next/link'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen bg-white">
+      {/* Nav */}
+      <nav className="border-b border-gray-100 px-6 py-4 flex items-center justify-between max-w-6xl mx-auto">
+        <h1 className="text-xl font-bold text-gray-900">TeleDrive</h1>
+        <Link
+          href="/login"
+          className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors"
+        >
+          Get Started
+        </Link>
+      </nav>
+
+      {/* Hero */}
+      <div className="max-w-4xl mx-auto px-6 pt-24 pb-16 text-center">
+        <span className="bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full">
+          100% Free Forever
+        </span>
+        <h2 className="text-5xl font-bold text-gray-900 mt-6 leading-tight">
+          Image Storage API<br />for Developers
+        </h2>
+        <p className="text-xl text-gray-500 mt-6 max-w-2xl mx-auto">
+          Upload, store and serve images via a simple API. Powered by Telegram.
+          No limits, no credit card, no BS.
+        </p>
+        <div className="flex items-center justify-center gap-4 mt-10">
+          <Link
+            href="/login"
+            className="bg-gray-900 text-white px-8 py-3 rounded-xl font-medium hover:bg-gray-700 transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Get your API key
+          </Link>
+          <Link
+            href="/docs"
+            className="text-gray-600 px-8 py-3 rounded-xl font-medium hover:bg-gray-50 border border-gray-200 transition-colors"
           >
-            Documentation
-          </a>
+            View docs
+          </Link>
         </div>
-      </main>
+      </div>
+
+      {/* Code preview */}
+      <div className="max-w-2xl mx-auto px-6 pb-24">
+        <div className="bg-gray-900 rounded-2xl p-6 text-left">
+          <p className="text-gray-400 text-xs mb-4 font-mono">Upload an image</p>
+          <pre className="text-green-400 text-sm font-mono overflow-x-auto">{`curl -X POST https://yourdomain.com/api/v1/upload \\
+  -H "x-api-key: tdrive_your_key_here" \\
+  -F "image=@photo.jpg"
+
+// Response
+{
+  "success": true,
+  "url": "https://yourdomain.com/i/abc123",
+  "id": "abc123"
+}`}</pre>
+        </div>
+      </div>
+
+      {/* Features */}
+      <div className="max-w-6xl mx-auto px-6 pb-24 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { title: 'Simple API', desc: 'One endpoint to upload. One URL to serve. That is it.' },
+          { title: 'Free Forever', desc: 'No storage limits, no bandwidth fees, no hidden costs.' },
+          { title: 'Instant CDN', desc: 'Images served globally via Telegram\'s infrastructure.' },
+        ].map((f) => (
+          <div key={f.title} className="bg-gray-50 rounded-2xl p-6">
+            <h3 className="font-semibold text-gray-900 mb-2">{f.title}</h3>
+            <p className="text-gray-500 text-sm">{f.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
-  );
+  )
 }
