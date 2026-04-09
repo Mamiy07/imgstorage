@@ -41,17 +41,7 @@ export default async function DashboardPage() {
         ))}
       </div>
 
-      {/* API Key quick view */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <h3 className="font-semibold text-gray-900 mb-4">Your API Key</h3>
-        {user.apiKeys[0] ? (
-          <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm text-gray-700 flex items-center justify-between">
-            <span>{user.apiKeys[0].key}</span>
-          </div>
-        ) : (
-          <p className="text-gray-400 text-sm">No API key yet</p>
-        )}
-      </div>
+   
 
       {/* Recent images */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">

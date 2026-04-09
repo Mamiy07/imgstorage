@@ -33,12 +33,7 @@ export default function HomePage() {
           >
             Get your API key
           </Link>
-          <Link
-            href="/docs"
-            className="text-gray-600 px-8 py-3 rounded-xl font-medium hover:bg-gray-50 border border-gray-200 transition-colors"
-          >
-            View docs
-          </Link>
+          
         </div>
       </div>
 
