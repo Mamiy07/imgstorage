@@ -33,7 +33,7 @@ export default function UploadZone() {
 
     if (file.size > 10 * 1024 * 1024) {
       setUploads((prev) => [
-        { name: file.name, progress: '', status: 'error', error: 'Max 10MB' },
+        { name: file.name, progress: '', status: 'error', error: 'Max 4MB' },
         ...prev,
       ])
       return
@@ -96,7 +96,7 @@ export default function UploadZone() {
         ) : (
           <>
             <p className="text-gray-700 font-medium">Drag & drop images here</p>
-            <p className="text-gray-400 text-sm mt-1">or click to browse — JPG, PNG, GIF, WebP up to 10MB</p>
+            <p className="text-gray-400 text-sm mt-1">or click to browse — JPG, PNG, GIF, WebP up to 4MB</p>
           </>
         )}
       </div>

@@ -11,7 +11,7 @@ export async function OPTIONS() {
 export const dynamic = 'force-dynamic'
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
-const MAX_SIZE = 10 * 1024 * 1024 // 10MB
+const MAX_SIZE = 4 * 1024 * 1024 // 4MB
 
 export async function POST(req: NextRequest) {
   // ✅ Get API key from header
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 
   // ✅ Validate file size
   if (image.size > MAX_SIZE) {
-    return NextResponse.json({ error: 'File too large. Max 10MB.' }, { status: 400 })
+    return NextResponse.json({ error: 'File too large. Max 4MB.' }, { status: 400 })
   }
 
   // ✅ Upload to Telegram

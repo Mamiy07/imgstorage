@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
   if (!image) return NextResponse.json({ error: 'No image' }, { status: 400 })
   if (!image.type.startsWith('image/')) return NextResponse.json({ error: 'Only images allowed' }, { status: 400 })
-  if (image.size > 10 * 1024 * 1024) return NextResponse.json({ error: 'Max 10MB' }, { status: 400 })
+  if (image.size > 4 * 1024 * 1024) return NextResponse.json({ error: 'Max 4MB' }, { status: 400 })
 
   const { file_id, message_id } = await uploadImageToTelegram(image)
   const slug = nanoid(12)

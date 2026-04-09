@@ -4,13 +4,17 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }  // ✅ Type as Promise
 ) {
+  const { slug } = await params  // ✅ Await params before accessing
+  
   const image = await prisma.image.findUnique({
-    where: { slug: params.slug },
+    where: { slug: slug },
   })
-
-  if (!image) {
+  
+  console.log('Fetched image from DB:', image)
+  
+  if (!image) { 
     return NextResponse.json({ error: 'Image not found' }, { status: 404 })
   }
 
