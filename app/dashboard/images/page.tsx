@@ -2,8 +2,9 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
-import ImageGrid from '@/components/ImageGrid'
-import UploadZone from '@/components/UploadZone'
+import UploadZone from '@/components/dashboard/UploadZone'
+import ImageGrid from '@/components/dashboard/ImageGrid'
+
 
 export default async function ImagesPage() {
   const session = await getServerSession(authOptions)
