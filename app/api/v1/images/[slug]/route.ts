@@ -4,8 +4,9 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { slug: string } }
+ { params }: { params: Promise<{ slug: string }> }  
 ) {
+  const param = (await params).slug
   const apiKey = req.headers.get('x-api-key')
   if (!apiKey) return NextResponse.json({ error: 'Missing x-api-key' }, { status: 401 })
 
@@ -16,7 +17,7 @@ export async function DELETE(
   if (!keyRecord) return NextResponse.json({ error: 'Invalid API key' }, { status: 401 })
 
   const image = await prisma.image.findFirst({
-    where: { slug: params.slug, apiKeyId: keyRecord.id },
+    where: { slug: param, apiKeyId: keyRecord.id },
   })
 
   if (!image) return NextResponse.json({ error: 'Image not found' }, { status: 404 })

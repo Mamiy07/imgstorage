@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation'
 import UploadZone from '@/components/dashboard/UploadZone'
 import ImageGrid from '@/components/dashboard/ImageGrid'
 
-
 export default async function ImagesPage() {
   const session = await getServerSession(authOptions)
   if (!session?.user?.email) redirect('/login')
@@ -22,7 +21,7 @@ export default async function ImagesPage() {
     orderBy: { createdAt: 'desc' },
   })
 
-  const serialized = images.map((img) => ({
+  const serialized = images.map((img: typeof images[number]) => ({
     id: img.id,
     slug: img.slug,
     fileName: img.fileName,

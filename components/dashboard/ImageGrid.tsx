@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-
 type ImageItem = {
   id: string
   slug: string
@@ -45,7 +44,7 @@ export default function ImageGrid({ images }: { images: ImageItem[] }) {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {images.map((img) => (
+      {images.map((img: typeof images[number]) => (
         <div
           key={img.id}
           className="group relative bg-gray-100 rounded-xl overflow-hidden aspect-square"

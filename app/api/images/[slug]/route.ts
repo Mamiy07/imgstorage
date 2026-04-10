@@ -6,8 +6,9 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { slug: string } }
+ { params }: { params: Promise<{ slug: string }> }  
 ) {
+  const param = (await params).slug
   const session = await getServerSession(authOptions)
   if (!session?.user?.email) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -19,7 +20,7 @@ export async function DELETE(
   if (!user) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 
   const image = await prisma.image.findFirst({
-    where: { slug: params.slug, userId: user.id },
+    where: { slug: param, userId: user.id },
   })
 
   if (!image) return NextResponse.json({ error: 'Image not found' }, { status: 404 })

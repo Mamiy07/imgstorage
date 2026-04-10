@@ -19,9 +19,9 @@ export async function GET(req: NextRequest) {
   const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
 
   return NextResponse.json({
-    success: true,
+    success: true,  
     count: images.length,
-    images: images.map((img) => ({
+    images: images.map((img: typeof images[number])=> ({
       id: img.slug,
       url: `${baseUrl}/i/${img.slug}`,
       fileName: img.fileName,

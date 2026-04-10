@@ -36,7 +36,7 @@ export default async function ApiKeysPage() {
         </div>
       ) : (
         <div className="space-y-4">
-          {user.apiKeys.map((key) => (
+          {user.apiKeys.map((key: (typeof user.apiKeys)[number]) => (
             <ApiKeyCard
               key={key.id}
               id={key.id}

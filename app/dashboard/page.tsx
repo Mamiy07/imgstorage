@@ -18,7 +18,7 @@ export default async function DashboardPage() {
   if (!user) redirect('/login')
 
   const totalImages = await prisma.image.count({ where: { userId: user.id } })
-  const totalUsage = user.apiKeys.reduce((sum, k) => sum + k.usageCount, 0)
+  const totalUsage = user.apiKeys.reduce((sum:number, k: typeof user.apiKeys[number]) => sum + k.usageCount, 0)
 
   return (
     <div>
@@ -50,7 +50,7 @@ export default async function DashboardPage() {
           <p className="text-gray-400 text-sm">No images uploaded yet</p>
         ) : (
           <div className="grid grid-cols-5 gap-3">
-            {user.images.map((img) => (
+            {user.images.map((img: typeof user.images[number]) => (
               <div
                 key={img.id}
                 className="aspect-square bg-gray-100 rounded-lg overflow-hidden"
