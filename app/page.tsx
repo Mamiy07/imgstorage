@@ -166,7 +166,7 @@ export default function LandingPage() {
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#E5E5E5]/80">
             <Link href="#docs" className="hover:text-[#E5E5E5] transition-colors duration-200">Docs</Link>
-            <Link href="#github" className="hover:text-[#E5E5E5] transition-colors duration-200">GitHub</Link>
+            <Link href="https://github.com/Mamiy07/imgstorage" className="hover:text-[#E5E5E5] transition-colors duration-200">GitHub</Link>
             <span className="text-[#E5E5E5]/40 opacity-70 cursor-not-allowed">Free Forever</span>
           </div>
           {/* ANIMATION 1: CTA Button Transition */}
@@ -554,7 +554,7 @@ const data = await res.json()
           <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-[#E5E5E5]/60">
             <Link href="#docs" className="hover:text-[#E5E5E5] transition-colors duration-200">Docs</Link>
             <Link href="#api" className="hover:text-[#E5E5E5] transition-colors duration-200">API Reference</Link>
-            <Link href="#github" className="hover:text-[#E5E5E5] transition-colors duration-200">GitHub</Link>
+            <Link href="https://github.com/Mamiy07/imgstorage" className="hover:text-[#E5E5E5] transition-colors duration-200">GitHub</Link>
             <Link href="#status" className="hover:text-[#E5E5E5] transition-colors duration-200">Status</Link>
           </div>
           
