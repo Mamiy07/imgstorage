@@ -3,7 +3,12 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { SignOutButton } from "@/components/global/SignOut";
+import { Inter } from 'next/font/google'
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
 export default async function DashboardLayout({
   children,
 }: {
@@ -13,7 +18,7 @@ export default async function DashboardLayout({
   if (!session?.user?.email) redirect("/login");
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
+    <div className={`min-h-screen bg-[#0a0a0a] text-[#ededed] font-sans ${inter.variable}`}>
       {/* Sidebar */}
       <aside className="fixed left-0 top-0 h-full w-56 bg-[#111111] border-r border-white/[0.06] flex flex-col">
 
