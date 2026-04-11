@@ -31,20 +31,20 @@ export default function CreateApiKeyButton() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Key name e.g. Production"
-          className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+          className="bg-[#111] border border-white/[0.1] rounded-lg px-3 py-2 text-sm text-white placeholder-[#444] focus:outline-none focus:border-white/30 transition-colors"
           onKeyDown={(e) => e.key === 'Enter' && handleCreate()}
           autoFocus
         />
         <button
           onClick={handleCreate}
           disabled={loading || !name.trim()}
-          className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-700 disabled:opacity-50 transition-colors"
+          className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/90 disabled:opacity-40 transition-colors"
         >
           {loading ? 'Creating...' : 'Create'}
         </button>
         <button
           onClick={() => setShowInput(false)}
-          className="text-gray-400 hover:text-gray-600 px-3 py-2 text-sm"
+          className="text-[#555] hover:text-white px-3 py-2 text-sm transition-colors"
         >
           Cancel
         </button>
@@ -55,9 +55,12 @@ export default function CreateApiKeyButton() {
   return (
     <button
       onClick={() => setShowInput(true)}
-      className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-700 transition-colors"
+      className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/90 transition-colors"
     >
-      + New API Key
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      New API Key
     </button>
   )
 }
