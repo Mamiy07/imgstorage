@@ -83,7 +83,7 @@ const data = await res.json()
         <section className="bg-blue-50 border border-blue-100 rounded-xl p-6">
           <h3 className="font-semibold text-blue-900 mb-2">Limits</h3>
           <ul className="text-sm text-blue-800 space-y-1">
-            <li>Max file size: 10MB per image</li>
+            <li>Max file size: 4MB per image</li>
             <li>Allowed types: JPG, PNG, GIF, WebP</li>
             <li>Storage: Unlimited (powered by Telegram)</li>
             <li>Requests: Unlimited</li>
