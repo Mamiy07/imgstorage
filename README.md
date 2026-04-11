@@ -94,16 +94,16 @@ When someone requests an image at `/i/:id`, imgstorage fetches it from Telegram 
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
-| Auth | NextAuth.js v4 |
-| Database ORM | Prisma |
-| Database | PostgreSQL (NeonDB) |
-| Storage | Telegram Bot API |
-| Styling | Tailwind CSS |
-| Deployment | Vercel (recommended) |
+| Layer        | Technology              |
+| ------------ | ----------------------- |
+| Framework    | Next.js 14 (App Router) |
+| Language     | TypeScript              |
+| Auth         | NextAuth.js v4          |
+| Database ORM | Prisma                  |
+| Database     | PostgreSQL (NeonDB)     |
+| Storage      | Telegram Bot API        |
+| Styling      | Tailwind CSS            |
+| Deployment   | Vercel (recommended)    |
 
 ---
 
@@ -265,7 +265,7 @@ NeonDB is a free serverless PostgreSQL database.
 1. Open Telegram and search for **@BotFather**
 2. Start a chat and send `/newbot`
 3. When asked for a name, type something like `imgstorage Bot`
-4. When asked for a username, type something ending in `bot` like `teledrive_storage_bot`
+4. When asked for a username, type something ending in `bot` like `ImgStorage_storage_bot`
 5. BotFather will reply with your **bot token** — it looks like:
    ```
    7123456789:AAFxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -287,7 +287,7 @@ The bot needs a private group to store images in.
 
 1. Open Telegram and tap the compose / pencil icon
 2. Select **New Group**
-3. In the search bar, search your bot username (e.g. `teledrive_storage_bot`)
+3. In the search bar, search your bot username (e.g. `ImgStorage_storage_bot`)
 4. Select it and tap **Next**
 5. Name the group something like `imgstorage Storage`
 6. Tap **Create**
@@ -378,6 +378,7 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 **First time flow:**
+
 1. Click **Get Started** on the landing page
 2. Sign in with Google or GitHub
 3. You are redirected to `/dashboard`
@@ -424,15 +425,15 @@ POST /api/v1/upload
 
 **Headers:**
 
-| Header | Value |
-|---|---|
-| `x-api-key` | Your API key |
+| Header         | Value                 |
+| -------------- | --------------------- |
+| `x-api-key`    | Your API key          |
 | `Content-Type` | `multipart/form-data` |
 
 **Body:**
 
-| Field | Type | Description |
-|---|---|---|
+| Field   | Type | Description              |
+| ------- | ---- | ------------------------ |
 | `image` | File | The image file to upload |
 
 **Allowed file types:** `image/jpeg`, `image/png`, `image/gif`, `image/webp`
@@ -475,8 +476,8 @@ GET /api/v1/images
 
 **Headers:**
 
-| Header | Value |
-|---|---|
+| Header      | Value        |
+| ----------- | ------------ |
 | `x-api-key` | Your API key |
 
 **Success response:**
@@ -510,15 +511,15 @@ DELETE /api/v1/images/:id
 
 **Headers:**
 
-| Header | Value |
-|---|---|
+| Header      | Value        |
+| ----------- | ------------ |
 | `x-api-key` | Your API key |
 
 **URL params:**
 
-| Param | Description |
-|---|---|
-| `id` | The image ID returned from the upload response |
+| Param | Description                                    |
+| ----- | ---------------------------------------------- |
+| `id`  | The image ID returned from the upload response |
 
 **Success response:**
 
@@ -552,12 +553,12 @@ Use this URL directly in `<img>` tags, CSS, markdown, or anywhere you need an im
 
 The dashboard at `/dashboard` gives you a visual interface to manage everything.
 
-| Page | Path | What it does |
-|---|---|---|
-| Overview | `/dashboard` | Stats: total images, API calls, keys |
-| Images | `/dashboard/images` | Upload images, view gallery, copy URLs, delete |
+| Page     | Path                  | What it does                                        |
+| -------- | --------------------- | --------------------------------------------------- |
+| Overview | `/dashboard`          | Stats: total images, API calls, keys                |
+| Images   | `/dashboard/images`   | Upload images, view gallery, copy URLs, delete      |
 | API Keys | `/dashboard/api-keys` | Create keys, view/copy keys, delete keys, see usage |
-| Docs | `/dashboard/docs` | Interactive API documentation with code examples |
+| Docs     | `/dashboard/docs`     | Interactive API documentation with code examples    |
 
 ---
 
@@ -568,35 +569,35 @@ The dashboard at `/dashboard` gives you a visual interface to manage everything.
 ```ts
 // Upload an image
 async function uploadImage(file: File, apiKey: string) {
-  const form = new FormData()
-  form.append('image', file)
+  const form = new FormData();
+  form.append("image", file);
 
-  const res = await fetch('http://localhost:3000/api/v1/upload', {
-    method: 'POST',
-    headers: { 'x-api-key': apiKey },
+  const res = await fetch("http://localhost:3000/api/v1/upload", {
+    method: "POST",
+    headers: { "x-api-key": apiKey },
     body: form,
-  })
+  });
 
-  const data = await res.json()
-  console.log(data.url) // https://yourdomain.com/i/abc123
-  return data
+  const data = await res.json();
+  console.log(data.url); // https://yourdomain.com/i/abc123
+  return data;
 }
 
 // List all images
 async function listImages(apiKey: string) {
-  const res = await fetch('http://localhost:3000/api/v1/images', {
-    headers: { 'x-api-key': apiKey },
-  })
-  return res.json()
+  const res = await fetch("http://localhost:3000/api/v1/images", {
+    headers: { "x-api-key": apiKey },
+  });
+  return res.json();
 }
 
 // Delete an image
 async function deleteImage(id: string, apiKey: string) {
   const res = await fetch(`http://localhost:3000/api/v1/images/${id}`, {
-    method: 'DELETE',
-    headers: { 'x-api-key': apiKey },
-  })
-  return res.json()
+    method: "DELETE",
+    headers: { "x-api-key": apiKey },
+  });
+  return res.json();
 }
 ```
 
@@ -667,61 +668,61 @@ curl -X DELETE http://localhost:3000/api/v1/images/abc123xyz456 \
 Drop this hook into any React project to use imgstorage:
 
 ```tsx
-import { useState } from 'react'
+import { useState } from "react";
 
-export function useTeleDrive(apiKey: string) {
-  const [uploading, setUploading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+export function useImgStorage(apiKey: string) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function upload(file: File) {
-    setUploading(true)
-    setError(null)
+    setUploading(true);
+    setError(null);
 
     try {
-      const form = new FormData()
-      form.append('image', file)
+      const form = new FormData();
+      form.append("image", file);
 
-      const res = await fetch('https://yourdomain.com/api/v1/upload', {
-        method: 'POST',
-        headers: { 'x-api-key': apiKey },
+      const res = await fetch("https://yourdomain.com/api/v1/upload", {
+        method: "POST",
+        headers: { "x-api-key": apiKey },
         body: form,
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
-      if (!res.ok) throw new Error(data.error)
+      if (!res.ok) throw new Error(data.error);
 
       return data as {
-        success: boolean
-        id: string
-        url: string
-        fileName: string
-        size: number
-        type: string
-        uploadedAt: string
-      }
+        success: boolean;
+        id: string;
+        url: string;
+        fileName: string;
+        size: number;
+        type: string;
+        uploadedAt: string;
+      };
     } catch (err: any) {
-      setError(err.message)
-      return null
+      setError(err.message);
+      return null;
     } finally {
-      setUploading(false)
+      setUploading(false);
     }
   }
 
-  return { upload, uploading, error }
+  return { upload, uploading, error };
 }
 
 // Usage in a component
 function MyComponent() {
-  const { upload, uploading } = useTeleDrive('tdrive_your_key_here')
+  const { upload, uploading } = useImgStorage("tdrive_your_key_here");
 
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (!file) return
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    const result = await upload(file)
+    const result = await upload(file);
     if (result) {
-      console.log('Image URL:', result.url)
+      console.log("Image URL:", result.url);
     }
   }
 
@@ -732,7 +733,7 @@ function MyComponent() {
       onChange={handleFile}
       disabled={uploading}
     />
-  )
+  );
 }
 ```
 
@@ -786,50 +787,58 @@ model Image {
 
 ## Environment Variables Reference
 
-| Variable | Required | Description |
-|---|---|---|
-| `DATABASE_URL` | Yes | PostgreSQL connection string from NeonDB |
-| `NEXTAUTH_URL` | Yes | Your app URL. Use `http://localhost:3000` locally |
-| `NEXTAUTH_SECRET` | Yes | Random secret for NextAuth. Generate with `openssl rand -base64 32` |
-| `GOOGLE_CLIENT_ID` | Yes | From Google Cloud Console |
-| `GOOGLE_CLIENT_SECRET` | Yes | From Google Cloud Console |
-| `GITHUB_CLIENT_ID` | Yes | From GitHub Developer Settings |
-| `GITHUB_CLIENT_SECRET` | Yes | From GitHub Developer Settings |
-| `TELEGRAM_BOT_TOKEN` | Yes | From @BotFather on Telegram |
-| `TELEGRAM_MASTER_CHANNEL_ID` | Yes | Your private Telegram group ID (starts with -100) |
+| Variable                     | Required | Description                                                         |
+| ---------------------------- | -------- | ------------------------------------------------------------------- |
+| `DATABASE_URL`               | Yes      | PostgreSQL connection string from NeonDB                            |
+| `NEXTAUTH_URL`               | Yes      | Your app URL. Use `http://localhost:3000` locally                   |
+| `NEXTAUTH_SECRET`            | Yes      | Random secret for NextAuth. Generate with `openssl rand -base64 32` |
+| `GOOGLE_CLIENT_ID`           | Yes      | From Google Cloud Console                                           |
+| `GOOGLE_CLIENT_SECRET`       | Yes      | From Google Cloud Console                                           |
+| `GITHUB_CLIENT_ID`           | Yes      | From GitHub Developer Settings                                      |
+| `GITHUB_CLIENT_SECRET`       | Yes      | From GitHub Developer Settings                                      |
+| `TELEGRAM_BOT_TOKEN`         | Yes      | From @BotFather on Telegram                                         |
+| `TELEGRAM_MASTER_CHANNEL_ID` | Yes      | Your private Telegram group ID (starts with -100)                   |
 
 ---
 
 ## Common Errors & Fixes
 
 **`Error: Invalid API key`**
+
 - Make sure you're passing the key in the `x-api-key` header, not `Authorization`
 - Check you copied the full key including the `tdrive_` prefix
 
 **`Error: No storage channel found`**
+
 - Your user row in the database has a null `telegramChannelId`
 - Run `npx prisma studio`, open the User table, and manually set `telegramChannelId` to your group ID
 
 **`Error: Telegram error: Bad Request: chat not found`**
+
 - Your `TELEGRAM_MASTER_CHANNEL_ID` is wrong
 - Make sure it starts with a minus sign e.g. `-1001234567890`
 - Make sure the bot is an admin in that group
 
 **`PrismaClientKnownRequestError: table does not exist`**
+
 - Run `npx prisma db push` to create the tables
 
 **`Error: NEXTAUTH_SECRET is not set`**
+
 - Generate one with `openssl rand -base64 32` and add it to `.env.local`
 
 **Images not showing in dashboard**
+
 - The image URL `/i/:slug` fetches from Telegram each time
 - Make sure your bot token is correct and the group still exists
 
 **`401 Unauthorized` on API routes**
+
 - You are not logged in or the session has expired
 - Sign out and sign back in
 
 **Bot not found when creating Telegram group**
+
 - Search the bot username without the `@` symbol
 - Make sure group privacy is disabled in BotFather → Bot Settings → Group Privacy → Turn off
 
