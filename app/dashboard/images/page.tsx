@@ -33,7 +33,7 @@ export default async function ImagesPage() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-8">Images</h2>
+      <h2 className="text-2xl font-bold text-white mb-8">Images</h2>
       <div className="mb-8">
         <UploadZone />
       </div>
