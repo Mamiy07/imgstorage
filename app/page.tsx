@@ -322,7 +322,7 @@ export default function LandingPage() {
           {/* ANIMATION 1: CTA Button Transition */}
           <Link
             href="/login"
-            className="bg-[#2563EB] text-[#E5E5E5] px-5 py-2.5 rounded-md text-sm font-medium hover:bg-[#2563EB]/90 transition-colors duration-200 border border-[#2563EB]"
+            className="bg-white text-black px-5 py-2.5 rounded-md text-sm font-medium hover:bg-[#2563EB]/90 transition-colors duration-200 border border-[#2563EB]"
           >
             Get API Key &rarr;
           </Link>
@@ -339,7 +339,7 @@ export default function LandingPage() {
             <span className="text-[#2563EB]">⚡</span> Powered by Telegram
             Infrastructure
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-[-0.03em] text-[#E5E5E5] mb-6 leading-[1.1]">
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] text-[#E5E5E5] mb-6 leading-[1.1]">
             Image Storage API <br /> for Developers
           </h1>
           <p className="text-lg md:text-xl text-[#E5E5E5]/70 max-w-xl mb-10 leading-[1.8] font-light">
@@ -349,7 +349,7 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
             <Link
               href="/login"
-              className="bg-[#2563EB] text-[#E5E5E5] px-8 py-3.5 rounded-md font-medium hover:bg-[#2563EB]/90 transition-colors duration-200 border border-[#2563EB]"
+              className="bg-white text-black px-8 py-3.5 rounded-md font-medium hover:bg-[#2563EB]/90 transition-colors duration-200 border border-[#2563EB]"
             >
               Get Started Free &rarr;
             </Link>
@@ -818,7 +818,7 @@ const data = await res.json()
         </p>
         <Link
           href="/login"
-          className="animate-pulse-glow bg-[#2563EB] text-[#E5E5E5] px-10 py-4 rounded-md text-lg font-medium hover:bg-[#2563EB]/90 transition-colors duration-200 inline-block border border-[#2563EB]"
+          className="animate-pulse-glow bg-white text-black px-10 py-4 rounded-md text-lg font-medium hover:bg-[#2563EB]/90 transition-colors duration-200 inline-block border border-[#2563EB]"
         >
           Get your free API key &rarr;
         </Link>
