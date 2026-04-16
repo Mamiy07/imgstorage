@@ -1,21 +1,11 @@
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { prisma } from '@/lib/prisma'
-import { redirect } from 'next/navigation'
 import CreateApiKeyButton from '@/components/dashboard/CreateApiKey'
 import ApiKeyCard from '@/components/dashboard/ApiKeyCard'
+import { getApiKeysData } from '@/lib/dashboard-data'
+import { getCurrentUser } from '@/lib/auth'
 
 export default async function ApiKeysPage() {
-  const session = await getServerSession(authOptions)
-  if (!session?.user?.email) redirect('/login')
-
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
-    include: { apiKeys: { orderBy: { createdAt: 'desc' } } },
-  })
-
-  if (!user) redirect('/login')
-
+   const { user } = await getCurrentUser()
+  const apiKeys = await getApiKeysData(user.id)
   return (
     <div className="space-y-6">
 
@@ -44,7 +34,7 @@ export default async function ApiKeysPage() {
       </div>
 
       {/* Keys */}
-      {user.apiKeys.length === 0 ? (
+      {apiKeys.length === 0 ? (
         <div className="bg-[#111] border border-white/[0.06] rounded-xl flex flex-col items-center justify-center py-20 text-center">
           <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center mb-3">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -56,14 +46,14 @@ export default async function ApiKeysPage() {
         </div>
       ) : (
         <div className="space-y-3">
-          {user.apiKeys.map((key: (typeof user.apiKeys)[number]) => (
+          {apiKeys.map((key: (typeof apiKeys)[number]) => (
             <ApiKeyCard
               key={key.id}
               id={key.id}
               name={key.name}
               apiKey={key.key}
               usageCount={key.usageCount}
-              createdAt={key.createdAt.toISOString()}
+              createdAt={key.createdAt.toString()}
             />
           ))}
         </div>

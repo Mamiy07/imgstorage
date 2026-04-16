@@ -1,25 +1,13 @@
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { prisma } from '@/lib/prisma'
-import { redirect } from 'next/navigation'
+
 import UploadZone from '@/components/dashboard/UploadZone'
 import ImageGrid from '@/components/dashboard/ImageGrid'
+import { getImagesData } from '@/lib/dashboard-data'
+import { getCurrentUser } from '@/lib/auth'
 
 export default async function ImagesPage() {
-  const session = await getServerSession(authOptions)
-  if (!session?.user?.email) redirect('/login')
+  const { user } = await getCurrentUser()
+  const images = await getImagesData(user.id)
 
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
-    select: { id: true },
-  })
-
-  if (!user) redirect('/login')
-
-  const images = await prisma.image.findMany({
-    where: { userId: user.id },
-    orderBy: { createdAt: 'desc' },
-  })
 
   const serialized = images.map((img: typeof images[number]) => ({
     id: img.id,
@@ -27,7 +15,7 @@ export default async function ImagesPage() {
     fileName: img.fileName,
     fileSizeMb: img.fileSizeMb,
     mimeType: img.mimeType,
-    createdAt: img.createdAt.toISOString(),
+    createdAt: img.createdAt.toString(),
     telegramMsgId: img.telegramMsgId?.toString() ?? null,
   }))
 
